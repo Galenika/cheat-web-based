@@ -15,6 +15,5 @@
 * use `yarn start` to run the production build.
 
 ### TODO
-* Add support for multiple values.
-* Add multiple user support based on ips.
+* Add multiple user support based on login/register.
 * Add a example client.
