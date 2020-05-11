@@ -16,4 +16,4 @@
 
 ### TODO
 * Add multiple user support based on login/register.
-* Add a example client.
+* Add a client server that listens for updates instead of getting them.
