@@ -33,7 +33,7 @@ app.post("/toggleFeature", async (req, res, next) => {
     const value = req.body.value;
 
     if(uid && features && value) {
-        await toggleFeature(String(uid), JSON.parse(features), value, res);
+        await toggleFeature(String(uid), features, value, res);
     } else {
         return res.status(403).json({
             success: false,
