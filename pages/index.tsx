@@ -11,6 +11,7 @@ export default class Index extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
 
+        // add every feature to state
         this.state = {input: '', input1: '', input2: '', value: 0, value1: 0, value2: 0};
 
         // bind this to be able to access the variable. (input)
@@ -46,7 +47,9 @@ export default class Index extends React.Component<any, any> {
     
     // sends the request to the backend when pressing the save button.
     toggleFeature = () => {
-        console.log("feature: " + this.state.input + " value: " + this.state.value);
+        //const features = JSON.parse(`{  ${this.state.input} {"value": ${this.state.value}} }`);
+        const features = JSON.parse(`{${this.state.input}`);
+        console.log(features)
        fetch("http://localhost:3002/toggleFeature", {
            method: "POST",
            mode: "cors",
@@ -77,11 +80,11 @@ export default class Index extends React.Component<any, any> {
                             <p>Value: {this.state.value}</p>
                             <Slider step={1} defaultValue={0} value={this.state.value} onChange={this.onSliderChange} />
 
-                            <input value={this.state.input} onChange={this.handleChange1} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
+                            <input value={this.state.input1} onChange={this.handleChange1} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
                             <p>Value: {this.state.value1}</p>
                             <Slider step={1} defaultValue={0} value={this.state.value1} onChange={this.onSliderChange1} />
 
-                            <input value={this.state.input} onChange={this.handleChange2} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
+                            <input value={this.state.input2} onChange={this.handleChange2} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
                             <p>Value: {this.state.value2}</p>
                             <Slider step={1} defaultValue={0} value={this.state.value2} onChange={this.onSliderChange2} />
 
