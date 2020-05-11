@@ -7,7 +7,7 @@ import { response } from "express";
 
 
 export default class Index extends React.Component<any, any> {
-
+    
     constructor(props: any) {
         super(props);
 
@@ -16,14 +16,17 @@ export default class Index extends React.Component<any, any> {
 
         // bind this to be able to access the variable. (input)
         this.handleChange = this.handleChange.bind(this);
-        this.handleChange1 = this.handleChange.bind(this);
-        this.handleChange2 = this.handleChange.bind(this);
         
     }
 
-    handleChange(event: any) {this.setState({input: event.target.value}); }
-    handleChange1(event: any) {this.setState({input1: event.target.value}); }
-    handleChange2(event: any) {this.setState({input2: event.target.value}); }
+
+    handleChange (evt: { target: { name: any; value: any; }; }) {
+
+        this.setState({ [evt.target.name]: evt.target.value });
+        console.log(evt.target.name);
+      }
+
+
 
     // changes the variables to the corrosponding event => state whenever a slider value is changed.
     onSliderChange = (value: any) => {
@@ -76,15 +79,15 @@ export default class Index extends React.Component<any, any> {
                             </div>
 
                             <div id="sliders" className="py-24">
-                            <input value={this.state.input} onChange={this.handleChange} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
+                            <input name="input" value={this.state.input} onChange={this.handleChange} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
                             <p>Value: {this.state.value}</p>
                             <Slider step={1} defaultValue={0} value={this.state.value} onChange={this.onSliderChange} />
 
-                            <input value={this.state.input1} onChange={this.handleChange1} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
+                            <input name="input1" value={this.state.input1} onChange={this.handleChange} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
                             <p>Value: {this.state.value1}</p>
                             <Slider step={1} defaultValue={0} value={this.state.value1} onChange={this.onSliderChange1} />
 
-                            <input value={this.state.input2} onChange={this.handleChange2} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
+                            <input name="input2" value={this.state.input2} onChange={this.handleChange} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
                             <p>Value: {this.state.value2}</p>
                             <Slider step={1} defaultValue={0} value={this.state.value2} onChange={this.onSliderChange2} />
 
