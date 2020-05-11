@@ -19,11 +19,9 @@ export default class Index extends React.Component<any, any> {
         
     }
 
-
+    // handles input change for all 3 example inputs
     handleChange (evt: { target: { name: any; value: any; }; }) {
-
         this.setState({ [evt.target.name]: evt.target.value });
-        console.log(evt.target.name);
       }
 
 
@@ -51,13 +49,25 @@ export default class Index extends React.Component<any, any> {
     // sends the request to the backend when pressing the save button.
     toggleFeature = () => {
         //const features = JSON.parse(`{  ${this.state.input} {"value": ${this.state.value}} }`);
-        const features = JSON.parse(`{${this.state.input}`);
-        console.log(features)
+        // converting all input/slider values into a json to send it to the server.
+        const json = `{
+            "${this.state.input}": {
+                "value": ${this.state.value}
+            },
+            "${this.state.input1}": {
+                "value": ${this.state.value1}
+            },
+            "${this.state.input2}": {
+                "value": ${this.state.value2}
+            }
+        }`
+        const features = JSON.parse(json);
+        console.log(features);
        fetch("http://localhost:3002/toggleFeature", {
            method: "POST",
            mode: "cors",
            cache: "no-cache",
-           body: JSON.stringify({uid: 1, features: this.state.input, value: this.state.value}), // uid hardcoded for testing purposes
+           body: JSON.stringify({uid: 1, features: json, value: this.state.value}), // uid hardcoded for testing purposes
            headers: {"Content-Type": "application/json"}
        }).then(response => response.json()
          .then(data => console.log(data)))

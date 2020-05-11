@@ -32,6 +32,8 @@ app.post("/toggleFeature", async (req, res, next) => {
     const uid = req.body.uid;
     const value = req.body.value;
 
+    console.log(req.body);
+
     if(uid && features && value) {
         await toggleFeature(String(uid), String(features), value, res);
     } else {
