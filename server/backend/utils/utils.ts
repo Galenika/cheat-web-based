@@ -28,3 +28,12 @@ export async function toggleFeature(uid: string, features: string, value: any, r
         failures: failure
     })
 }
+
+export async function getFeatures(uid: string, res) {
+    const data = db.prepare("SELECT feature, enabled from enabled  WHERE uid=?").all(uid);
+    return res.status(200).json({
+        success: true,
+        message: "data has been fetched.",
+        data: data,
+    })
+}

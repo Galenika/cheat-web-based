@@ -1,5 +1,6 @@
 **/cloud.db
-**/**/cloud.db.sqbpro
+**/cloud.db.sqbpro
+**/cloud.db-journal
 **/node_modules
 **/.next
 **/cloud-based-backend.code-workspace
