@@ -4,7 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 export const db = sqlite(String(process.env.DB));
 
-export async function toggleFeature(uid: string, feature: string, value: any, res: any) {
+export async function toggleFeature(uid: string, features: JSON, value: any, res: any) 
+{/*
     const FeatureIsInDatabase = db.prepare("SELECT feature from enabled WHERE feature=? AND uid=?").all(feature, uid);
     if(FeatureIsInDatabase === undefined || FeatureIsInDatabase.length == 0) {
         return res.status(200).json({
@@ -18,4 +19,5 @@ export async function toggleFeature(uid: string, feature: string, value: any, re
             message: changeFeature
         })
     }
+    */
 }

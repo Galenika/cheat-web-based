@@ -3,7 +3,7 @@ import Link from "next/link";
 import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 import { response } from "express";
-
+import Swal from 'sweetalert2'
 
 
 export default class Index extends React.Component<any, any> {
@@ -50,7 +50,7 @@ export default class Index extends React.Component<any, any> {
     toggleFeature = () => {
         //const features = JSON.parse(`{  ${this.state.input} {"value": ${this.state.value}} }`);
         // converting all input/slider values into a json to send it to the server.
-        const json = `{
+        const features = `{
             "${this.state.input}": {
                 "value": ${this.state.value}
             },
@@ -61,16 +61,25 @@ export default class Index extends React.Component<any, any> {
                 "value": ${this.state.value2}
             }
         }`
-        const features = JSON.parse(json);
-        console.log(features);
        fetch("http://localhost:3002/toggleFeature", {
            method: "POST",
            mode: "cors",
            cache: "no-cache",
-           body: JSON.stringify({uid: 1, features: json, value: this.state.value}), // uid hardcoded for testing purposes
+           body: JSON.stringify({uid: 1, features: features, value: this.state.value}), // uid hardcoded for testing purposes
            headers: {"Content-Type": "application/json"}
-       }).then(response => response.json()
-         .then(data => console.log(data)))
+        })
+         .then(response => {
+             response.json();
+             if(!response.ok) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: 'Error code: ' + response.status
+                  })
+             } 
+         })
+         .then(data => console.log(data))
          .catch(rejected => {
             console.log("Error sending request to server: " + rejected);
         });
