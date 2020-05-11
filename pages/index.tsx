@@ -81,12 +81,20 @@ export default class Index extends React.Component<any, any> {
              return response.json();
          })
          .then(data => {
+             console.log(data);
             if(!rcode) {
                 Swal.fire({
                     icon: 'error',
                     title: 'Something went wrong!',
                     text: 'Response: ' + JSON.stringify(data["message"]),
                     footer: 'Error code: ' + rstatus
+                });
+            } else {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Saved!',
+                    text: 'Response: ' + JSON.stringify(data["message"]),
+                    footer: 'Failures: ' + JSON.stringify(data["failures"])
                 });
             }
          })

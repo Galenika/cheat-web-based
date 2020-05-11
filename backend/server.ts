@@ -35,6 +35,7 @@ app.post("/toggleFeature", async (req, res, next) => {
     if(uid && features && value) {
         await toggleFeature(String(uid), features, value, res);
     } else {
+        console.log("sending request..");
         return res.status(403).json({
             success: false,
             message: "Wrong arguements."
