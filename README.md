@@ -2,6 +2,7 @@
 
 <img src="https://jelbrek.icu/ka1tm49v.png" alt="showcase" width="200" height="200">
 
+#### Visit the API documentation [here](https://github.com/iraizo/cheat-web-based/wiki/API-DOCUMENTATION).
 
 ### Setup
 
@@ -17,3 +18,4 @@
 ### TODO
 * Add multiple user support based on login/register.
 * Add a client server that listens for updates instead of getting them.
+
