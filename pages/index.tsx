@@ -5,9 +5,6 @@ import Tooltip from 'rc-tooltip';
 import { response } from "express";
 
 
-interface inputState {
-    value: string
-}
 
 export default class Index extends React.Component<any, any> {
 
@@ -27,6 +24,7 @@ export default class Index extends React.Component<any, any> {
     handleChange1(event: any) {this.setState({input1: event.target.value}); }
     handleChange2(event: any) {this.setState({input2: event.target.value}); }
 
+    // changes the variables to the corrosponding event => state whenever a slider value is changed.
     onSliderChange = (value: any) => {
         this.setState({
           value: value,
@@ -45,8 +43,8 @@ export default class Index extends React.Component<any, any> {
         });
       };
 
-
-
+    
+    // sends the request to the backend when pressing the save button.
     toggleFeature = () => {
         console.log("feature: " + this.state.input + " value: " + this.state.value);
        fetch("http://localhost:3002/toggleFeature", {
