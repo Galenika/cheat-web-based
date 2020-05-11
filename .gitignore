@@ -3,3 +3,4 @@ cloud.db.sqbpro
 node_modules
 .next
 cloud-based-backend.code-workspace
+public/css/tailwind.css

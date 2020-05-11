@@ -26,7 +26,7 @@
   },
   "scripts": {
     "build:backend": "tsc -p tsconfig.server.json",
-    "build:tailwind": "npx tailwindcss build src/tailwind.css -o output.css",
+    "build:tailwind": "npx tailwindcss build src/tailwind.css -o public/css/tailwind.css",
     "dev": "cross-env NODE_ENV=development ts-node-dev --ignore-watch pages --ignore-watch .next --ignore-watch node_modules --ignore-watch uploads -P tsconfig.server.json --cls  backend/server.ts",
     "build": "yarn run build:backend && next build",
     "start": "node backend/server.js"

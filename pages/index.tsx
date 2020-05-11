@@ -14,7 +14,7 @@ export default class Index extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
 
-        this.state = {value: 0, input: ''};
+        this.state = {input: '', input1: '', input2: '', value: 0, value1: 0, value2: 0};
 
         this.handleChange = this.handleChange.bind(this);
         
@@ -22,12 +22,7 @@ export default class Index extends React.Component<any, any> {
 
     handleChange(event: any) {this.setState({input: event.target.value}); }
 
-
-
-    svalue: 0 = 0;
-
     onSliderChange = (value: any) => {
-        this.svalue = value;
         this.setState({
           value,
         });
@@ -35,17 +30,17 @@ export default class Index extends React.Component<any, any> {
 
 
     toggleFeature = () => {
-        console.log("feature: " + this.state.input + " value: " + this.svalue);
+        console.log("feature: " + this.state.input + " value: " + this.state.value);
        fetch("http://localhost:3002/toggleFeature", {
            method: "POST",
            mode: "cors",
            cache: "no-cache",
-           body: JSON.stringify({uid: 1, feature: this.state.input, value: this.svalue}), // uid hardcoded for testing purposes
+           body: JSON.stringify({uid: 1, features: this.state.input, value: this.state.value}), // uid hardcoded for testing purposes
            headers: {"Content-Type": "application/json"}
        }).then(response => response.json()
          .then(data => console.log(data)))
          .catch(rejected => {
-            console.log(rejected);
+            console.log("Error sending request to server: " + rejected);
         });
     }
 
@@ -63,8 +58,8 @@ export default class Index extends React.Component<any, any> {
 
                             <div id="sliders" className="py-24">
                             <input value={this.state.input} onChange={this.handleChange} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
-                            <p>Value: {this.svalue}</p>
-                            <Slider step={1} defaultValue={0} value={this.svalue} onChange={this.onSliderChange} />
+                            <p>Value: {this.state.value}</p>
+                            <Slider step={1} defaultValue={0} value={this.state.value} onChange={this.onSliderChange} />
 
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-4" onClick={this.toggleFeature}>
                                 Save

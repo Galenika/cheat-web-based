@@ -28,12 +28,12 @@ app.use(function(req, res, next) {
   });
 
 app.post("/toggleFeature", async (req, res, next) => {
-    const feature = req.body.feature;
+    const features = req.body.features;
     const uid = req.body.uid;
     const value = req.body.value;
 
-    if(uid && feature && value) {
-        await toggleFeature(String(uid), String(feature), value, res);
+    if(uid && features && value) {
+        await toggleFeature(String(uid), String(features), value, res);
     } else {
         return res.status(403).json({
             success: false,
