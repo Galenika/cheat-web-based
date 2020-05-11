@@ -16,17 +16,35 @@ export default class Index extends React.Component<any, any> {
 
         this.state = {input: '', input1: '', input2: '', value: 0, value1: 0, value2: 0};
 
+        // bind this to be able to access the variable. (input)
         this.handleChange = this.handleChange.bind(this);
+        this.handleChange1 = this.handleChange.bind(this);
+        this.handleChange2 = this.handleChange.bind(this);
         
     }
 
     handleChange(event: any) {this.setState({input: event.target.value}); }
+    handleChange1(event: any) {this.setState({input1: event.target.value}); }
+    handleChange2(event: any) {this.setState({input2: event.target.value}); }
 
     onSliderChange = (value: any) => {
         this.setState({
-          value,
+          value: value,
         });
       };
+
+      onSliderChange1 = (value: any) => {
+        this.setState({
+          value1: value,
+        });
+      };
+
+      onSliderChange2 = (value: any) => {
+        this.setState({
+          value2: value,
+        });
+      };
+
 
 
     toggleFeature = () => {
@@ -60,6 +78,14 @@ export default class Index extends React.Component<any, any> {
                             <input value={this.state.input} onChange={this.handleChange} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
                             <p>Value: {this.state.value}</p>
                             <Slider step={1} defaultValue={0} value={this.state.value} onChange={this.onSliderChange} />
+
+                            <input value={this.state.input} onChange={this.handleChange1} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
+                            <p>Value: {this.state.value1}</p>
+                            <Slider step={1} defaultValue={0} value={this.state.value1} onChange={this.onSliderChange1} />
+
+                            <input value={this.state.input} onChange={this.handleChange2} className="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal my-4" placeholder="feature name"/>
+                            <p>Value: {this.state.value2}</p>
+                            <Slider step={1} defaultValue={0} value={this.state.value2} onChange={this.onSliderChange2} />
 
                             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-4" onClick={this.toggleFeature}>
                                 Save
