@@ -4,6 +4,8 @@ import Slider, { Range, createSliderWithTooltip } from 'rc-slider';
 import Tooltip from 'rc-tooltip';
 import { response } from "express";
 import Swal from 'sweetalert2'
+import { getRedirectStatus } from "next/dist/lib/check-custom-routes";
+import { json } from "body-parser";
 
 
 export default class Index extends React.Component<any, any> {
@@ -48,6 +50,8 @@ export default class Index extends React.Component<any, any> {
     
     // sends the request to the backend when pressing the save button.
     toggleFeature = () => {
+        let rcode = true;
+        let rstatus = 0;
         //const features = JSON.parse(`{  ${this.state.input} {"value": ${this.state.value}} }`);
         // converting all input/slider values into a json to send it to the server.
         const features = `{
@@ -69,19 +73,29 @@ export default class Index extends React.Component<any, any> {
            headers: {"Content-Type": "application/json"}
         })
          .then(response => {
-             response.json();
              if(!response.ok) {
+                 rcode = false;
+             }
+             rstatus = response.status;
+
+             return response.json();
+         })
+         .then(data => {
+            if(!rcode) {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong!',
-                    footer: 'Error code: ' + response.status
-                  })
-             } 
+                    title: 'Something went wrong!',
+                    text: 'Response: ' + JSON.stringify(data["message"]),
+                    footer: 'Error code: ' + rstatus
+                });
+            }
          })
-         .then(data => console.log(data))
          .catch(rejected => {
-            console.log("Error sending request to server: " + rejected);
+            Swal.fire({
+                icon: 'error',
+                title: 'Something went wrong sending the request to the server!',
+                text: 'Error: ' + rejected, 
+            });
         });
     }
 
