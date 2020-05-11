@@ -40,7 +40,7 @@ export default class Index extends React.Component<any, any> {
            method: "POST",
            mode: "cors",
            cache: "no-cache",
-           body: JSON.stringify({uid: 1, feature: this.state.input, value: this.svalue}),
+           body: JSON.stringify({uid: 1, feature: this.state.input, value: this.svalue}), // uid hardcoded for testing purposes
            headers: {"Content-Type": "application/json"}
        }).then(response => response.json()
          .then(data => console.log(data)))
@@ -48,8 +48,6 @@ export default class Index extends React.Component<any, any> {
             console.log(rejected);
         });
     }
-
-    
 
     render() {
         return (
@@ -74,7 +72,7 @@ export default class Index extends React.Component<any, any> {
 
                             </div>
 
-                            <div id="footer" className="">
+                            <div id="footer">
                                 <h1 className="text-xs text-black">made by raizo#0001</h1> 
                             </div>
                         

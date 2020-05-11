@@ -9,7 +9,7 @@
 * Move the database to the root folder of this project.
 * Edit the .env file and change the DB variable to the filename of your database.
 * Install all dependencies by running `yarn`
-* Its 3 AM, compile tailwind instructed [here](https://tailwindcss.com/docs/installation/#using-tailwind-cli) (public/css/tailwind.css).
+* Compile Tailwind using `yarn run build:tailwind`.
 * use `yarn dev` to run it on developement work.
 * use `yarn build` to build a production build.
 * use `yarn start` to run the production build.
